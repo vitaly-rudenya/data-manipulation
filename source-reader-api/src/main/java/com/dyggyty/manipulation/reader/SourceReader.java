@@ -3,6 +3,7 @@ package com.dyggyty.manipulation.reader;
 import com.dyggyty.manipulation.reader.model.SiteCollection;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 
 public interface SourceReader {
 
@@ -14,5 +15,5 @@ public interface SourceReader {
      */
     boolean isAcceptable(File file);
 
-    SiteCollection parceSiteCollection(File file);
+    SiteCollection parceSiteCollection(File file) throws FileNotFoundException;
 }

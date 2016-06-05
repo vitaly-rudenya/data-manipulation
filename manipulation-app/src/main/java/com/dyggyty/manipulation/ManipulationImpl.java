@@ -2,8 +2,7 @@ package com.dyggyty.manipulation;
 
 import com.dyggyty.manipulation.reader.SourceReader;
 import com.dyggyty.manipulation.reader.model.SiteCollection;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.dyggyty.manipulation.utils.gson.GsonContainer;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,7 +19,6 @@ import java.util.Collection;
 public class ManipulationImpl implements Manipulation {
 
     private Log logger = LogFactory.getLog(getClass());
-    private static final Gson GSON = new GsonBuilder().create();
 
     @Autowired(required = false)
     private Collection<SourceReader> sourceReaders;
@@ -63,15 +61,16 @@ public class ManipulationImpl implements Manipulation {
 
     private void writeSiteCollection(OutputStreamWriter streamWriter, SourceReader sourceReader, File pathname) {
 
-        SiteCollection siteCollection = sourceReader.parceSiteCollection(pathname);
-        if (siteCollection != null) {
-            //todo populate with keywords here
-            String siteCollectionJson = GSON.toJson(siteCollection);
-            try {
+        try {
+            SiteCollection siteCollection = sourceReader.parceSiteCollection(pathname);
+            if (siteCollection != null) {
+                //todo populate with keywords here
+                String siteCollectionJson = GsonContainer.getGSON().toJson(siteCollection);
                 streamWriter.write(siteCollectionJson);
-            } catch (IOException e) {
-                logger.error("Can't write to the output file: ", e);
+                streamWriter.write("\n");
             }
+        } catch (IOException e) {
+            logger.error("Can't write to the output file: ", e);
         }
     }
 }
