@@ -1,4 +1,4 @@
-package com.dyggyty.manipulation.model;
+package com.dyggyty.manipulation.reader.model;
 
 /**
  * Site detailed information

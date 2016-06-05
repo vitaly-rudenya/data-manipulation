@@ -1,4 +1,4 @@
-package com.dyggyty.manipulation.model;
+package com.dyggyty.manipulation.reader.model;
 
 import java.util.List;
 
