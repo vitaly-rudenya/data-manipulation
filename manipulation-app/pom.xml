@@ -30,6 +30,11 @@
         </dependency>
         <dependency>
             <groupId>com.dyggyty</groupId>
+            <artifactId>csv-source-reader</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.dyggyty</groupId>
             <artifactId>manipulation-utils</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
