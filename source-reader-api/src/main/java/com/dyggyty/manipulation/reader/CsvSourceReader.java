@@ -3,7 +3,7 @@ package com.dyggyty.manipulation.reader;
 import au.com.bytecode.opencsv.CSVReader;
 import com.dyggyty.manipulation.reader.model.SiteCollection;
 import com.dyggyty.manipulation.reader.model.SiteDetails;
-import com.dyggyty.manipulation.utils.web.WebUtils;
+import com.dyggyty.manipulation.reader.utils.WebUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;

@@ -1,4 +1,4 @@
-package com.dyggyty.manipulation.utils.gson;
+package com.dyggyty.manipulation.reader.utils;
 
 import com.google.gson.TypeAdapter;
 import com.google.gson.stream.JsonReader;
@@ -7,7 +7,7 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 
-public class BooleanTypeAdapter extends TypeAdapter<Boolean> {
+public class BooleanGsonTypeAdapter extends TypeAdapter<Boolean> {
 
     @Override
     public void write(JsonWriter out, Boolean value) throws IOException {

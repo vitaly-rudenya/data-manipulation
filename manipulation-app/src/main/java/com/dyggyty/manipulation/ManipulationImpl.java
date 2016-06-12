@@ -3,7 +3,7 @@ package com.dyggyty.manipulation;
 import com.dyggyty.manipulation.reader.SourceReader;
 import com.dyggyty.manipulation.reader.model.SiteCollection;
 import com.dyggyty.manipulation.reader.model.SiteDetails;
-import com.dyggyty.manipulation.utils.gson.GsonContainer;
+import com.dyggyty.manipulation.reader.utils.GsonContainer;
 import com.dyggyty.manipulation.web.KeywordsExtractor;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.logging.Log;

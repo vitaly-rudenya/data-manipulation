@@ -1,4 +1,4 @@
-package com.dyggyty.manipulation.utils.web;
+package com.dyggyty.manipulation.reader.utils;
 
 import java.net.URI;
 import java.net.URISyntaxException;

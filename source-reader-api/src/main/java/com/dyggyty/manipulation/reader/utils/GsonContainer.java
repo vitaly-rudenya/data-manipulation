@@ -1,4 +1,4 @@
-package com.dyggyty.manipulation.utils.gson;
+package com.dyggyty.manipulation.reader.utils;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -8,8 +8,8 @@ public class GsonContainer {
     private static final Gson GSON;
 
     static {
-        BooleanTypeAdapter booleanTypeAdapter = new BooleanTypeAdapter();
-        DoubleTypeAdapter doubleTypeAdapter = new DoubleTypeAdapter();
+        BooleanGsonTypeAdapter booleanTypeAdapter = new BooleanGsonTypeAdapter();
+        DoubleGsonTypeAdapter doubleTypeAdapter = new DoubleGsonTypeAdapter();
 
         GSON = new GsonBuilder()
                 .registerTypeAdapter(Boolean.class, booleanTypeAdapter)

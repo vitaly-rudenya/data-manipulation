@@ -18,12 +18,8 @@
 
     <modules>
         <module>source-reader-api</module>
-        <module>csv-source-reader</module>
-        <module>json-source-reader</module>
         <module>manipulation-app</module>
         <module>site-keyword-extractor-api</module>
-        <module>site-keyword-extractor</module>
-        <module>utils</module>
     </modules>
 
     <build>
