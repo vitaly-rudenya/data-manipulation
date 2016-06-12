@@ -20,7 +20,7 @@ public class ManipulationApp {
 
         APPLICATION_CONTEXT
                 .getBean(Manipulation.class)
-                .parceFolder(args[0], args.length > 1 ? args[1] : null);
+                .parseFolder(args[0], args.length > 1 ? args[1] : null);
     }
 
     private static void printHelp() {

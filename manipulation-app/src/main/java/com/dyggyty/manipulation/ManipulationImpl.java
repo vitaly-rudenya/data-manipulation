@@ -29,7 +29,7 @@ public class ManipulationImpl implements Manipulation {
     private KeywordsExtractor keywordsExtractor;
 
     @Override
-    public void parceFolder(String path, String output) {
+    public void parseFolder(String path, String output) {
 
         if (CollectionUtils.isEmpty(sourceReaders)) {
             logger.error("No source readers were registered");
