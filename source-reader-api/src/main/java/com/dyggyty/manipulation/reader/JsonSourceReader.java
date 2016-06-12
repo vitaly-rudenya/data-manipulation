@@ -10,8 +10,8 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
@@ -28,13 +28,13 @@ public class JsonSourceReader implements SourceReader {
     }
 
     @Override
-    public SiteCollection parceSiteCollection(File file) throws FileNotFoundException {
+    public SiteCollection parseSiteCollection(InputStream contentStream, String streamName) {
 
         SiteCollection siteCollection = new SiteCollection();
-        siteCollection.setCollectionId(file.getName());
+        siteCollection.setCollectionId(streamName);
 
         @SuppressWarnings("unchecked")
-        SiteData[] siteData = GsonContainer.getGSON().fromJson(new FileReader(file), SiteData[].class);
+        SiteData[] siteData = GsonContainer.getGSON().fromJson(new InputStreamReader(contentStream), SiteData[].class);
 
         if (siteData != null && siteData.length > 0) {
 

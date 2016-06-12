@@ -26,10 +26,11 @@ public class ManipulationImpl implements Manipulation {
 
     @Autowired(required = false)
     private Collection<SourceReader> sourceReaders;
+    @Autowired(required = false)
     private KeywordsExtractor keywordsExtractor;
 
     @Override
-    public void parseFolder(String path, String output) {
+    public void parseFolder(String path, String outputFile) {
 
         if (CollectionUtils.isEmpty(sourceReaders)) {
             logger.error("No source readers were registered");
@@ -67,7 +68,7 @@ public class ManipulationImpl implements Manipulation {
     private void writeSiteCollection(OutputStreamWriter streamWriter, SourceReader sourceReader, File pathname) {
 
         try {
-            SiteCollection siteCollection = sourceReader.parceSiteCollection(pathname);
+            SiteCollection siteCollection = sourceReader.parseSiteCollection(pathname);
             if (siteCollection != null) {
 
                 List<SiteDetails> siteDetails = siteCollection.getSites();

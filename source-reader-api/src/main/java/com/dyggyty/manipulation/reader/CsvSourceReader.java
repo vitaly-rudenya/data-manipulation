@@ -9,8 +9,9 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -26,14 +27,15 @@ public class CsvSourceReader implements SourceReader {
     }
 
     @Override
-    public SiteCollection parceSiteCollection(File file) throws IOException {
+    public SiteCollection parseSiteCollection(InputStream contentStream, String streamName) {
 
         SiteCollection siteCollection = new SiteCollection();
-        siteCollection.setCollectionId(file.getName());
+        siteCollection.setCollectionId(streamName);
 
-        try (CSVReader reader = new CSVReader(new FileReader(file))) {
+        try (CSVReader reader = new CSVReader(new InputStreamReader(contentStream))) {
             List<SiteDetails> siteDetails = new ArrayList<>();
-            String[] nextLine = reader.readNext(); //skip the CSV header
+            reader.readNext(); //skip the CSV header
+            String[] nextLine;
             while ((nextLine = reader.readNext()) != null) {
 
                 //Ski[p empty strings
@@ -73,7 +75,7 @@ public class CsvSourceReader implements SourceReader {
 
             siteCollection.setSites(siteDetails);
         } catch (IOException ex) {
-            logger.error("Can't read data from " + file.getName());
+            logger.error("Can't read data from " + streamName);
         }
 
         return siteCollection;

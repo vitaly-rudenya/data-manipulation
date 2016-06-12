@@ -7,6 +7,9 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 
+/**
+ * Format Boolean In/Out JSON values
+ */
 public class BooleanGsonTypeAdapter extends TypeAdapter<Boolean> {
 
     @Override

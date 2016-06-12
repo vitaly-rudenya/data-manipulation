@@ -7,6 +7,9 @@ import com.google.gson.stream.JsonWriter;
 
 import java.io.IOException;
 
+/**
+ * Format Double In/Out JSON values
+ */
 public class DoubleGsonTypeAdapter extends TypeAdapter<Double> {
 
     @Override

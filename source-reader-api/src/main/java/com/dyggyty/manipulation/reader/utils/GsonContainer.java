@@ -3,6 +3,9 @@ package com.dyggyty.manipulation.reader.utils;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+/**
+ * Contains JSON parser instance.
+ */
 public class GsonContainer {
 
     private static final Gson GSON;
@@ -19,6 +22,15 @@ public class GsonContainer {
                 .create();
     }
 
+    private GsonContainer() {
+        //empty constructor.
+    }
+
+    /**
+     * Return JSON parser instance.
+     *
+     * @return GSON parser.
+     */
     public static Gson getGSON() {
         return GSON;
     }
