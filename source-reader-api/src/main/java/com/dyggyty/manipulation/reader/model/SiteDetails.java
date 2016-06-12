@@ -7,6 +7,7 @@ public class SiteDetails {
     
     private String id;
     private String name;
+    private transient String originalName;
     private Boolean mobile;
     private String keywords;
     private Double score;
@@ -25,6 +26,14 @@ public class SiteDetails {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getOriginalName() {
+        return originalName;
+    }
+
+    public void setOriginalName(String originalName) {
+        this.originalName = originalName;
     }
 
     public Boolean getMobile() {

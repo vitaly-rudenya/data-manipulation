@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -53,7 +54,7 @@ public class ManipulationImpl implements Manipulation {
             return;
         }
 
-        try (OutputStreamWriter streamWriter = new OutputStreamWriter(output == null ? System.out : new FileOutputStream(output))) {
+        try (OutputStreamWriter streamWriter = new OutputStreamWriter(outputFile == null ? System.out : new FileOutputStream(outputFile))) {
             folder.listFiles(pathname -> {
                 sourceReaders.stream()
                         .filter(sourceReader -> sourceReader.isAcceptable(pathname))
@@ -68,7 +69,7 @@ public class ManipulationImpl implements Manipulation {
     private void writeSiteCollection(OutputStreamWriter streamWriter, SourceReader sourceReader, File pathname) {
 
         try {
-            SiteCollection siteCollection = sourceReader.parseSiteCollection(pathname);
+            SiteCollection siteCollection = sourceReader.parseSiteCollection(new FileInputStream(pathname), pathname.getName());
             if (siteCollection != null) {
 
                 List<SiteDetails> siteDetails = siteCollection.getSites();
@@ -76,7 +77,16 @@ public class ManipulationImpl implements Manipulation {
                 if (keywordsExtractor != null && CollectionUtils.isNotEmpty(siteDetails)) {
                     siteDetails.stream()
                             .filter(site -> !StringUtils.isEmpty(site.getName()))
-                            .forEach(site -> site.setKeywords(keywordsExtractor.getKeywords(site.getName())));
+                            .forEach(site -> {
+                                String siteName = site.getName();
+                                try {
+                                    site.setKeywords(keywordsExtractor.getKeywords(siteName));
+                                } catch (IOException e) {
+                                    logger.error("Can't get keywords for the " + siteName, e);
+
+                                    e.printStackTrace();
+                                }
+                            });
                 }
 
                 String siteCollectionJson = GsonContainer.getGSON().toJson(siteCollection);

@@ -38,14 +38,14 @@ public class JsonSourceReader implements SourceReader {
 
         if (siteData != null && siteData.length > 0) {
 
-            List<SiteDetails> siteDetails = Arrays.asList(siteData).stream().map(site -> {
+            List<SiteDetails> siteDetails = Arrays.asList(siteData).stream().filter(site -> site != null).map(site -> {
                 SiteDetails siteDetail = new SiteDetails();
 
                 siteDetail.setId(site.getSiteId());
                 siteDetail.setMobile(site.getMobile());
 
                 String siteName = site.getName();
-
+                siteDetail.setOriginalName(siteName);
                 if (siteName != null) {
                     try {
                         siteDetail.setName(WebUtils.getDomainName(siteName));
