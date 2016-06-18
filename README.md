@@ -8,4 +8,4 @@ mvc clean packege
 
 ## Running
 cd manipulation-app/target
-java -jar <jar file name> <filder> <out file>
+java -jar <jar file name> <folder> <out file>
